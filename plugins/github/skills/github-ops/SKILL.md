@@ -14,7 +14,7 @@ built from the declarative spec). All writes are TYPE1.
 
 ## When to Use
 
-- Publish or update `PMCRO-AI-Agent-Company/pmcro-company-template`
+- Publish or update PMCR-O base/skill repos under `PMCRO-AI-Agent-Company` (e.g. `github-skills`, `figma-skills`, `pmcro-skills`, `dotnet-skills`, `agent-skills`)
 - Create org/personal repos for company projects
 - Push bare-engine batches or pack overlay branches
 - Open PRs with trail UUID in the body
