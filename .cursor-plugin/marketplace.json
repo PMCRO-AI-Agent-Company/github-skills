@@ -1,0 +1,16 @@
+{
+  "name": "pmcro-github-skills",
+  "owner": {
+    "name": "Tooensure LLC"
+  },
+  "metadata": {
+    "description": "GitHub repository operations for the PMCR-O Colony: create/update repos, push files, branches, PRs, tree inspection, pack overlay publish."
+  },
+  "plugins": [
+    {
+      "name": "github",
+      "source": "./plugins/github",
+      "description": "GitHub repository operations for the PMCR-O base and packs using connected GitHub MCP tools."
+    }
+  ]
+}

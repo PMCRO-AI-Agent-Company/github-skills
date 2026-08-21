@@ -1,0 +1,16 @@
+{
+  "name": "pmcro-github-skills",
+  "owner": {
+    "name": "Tooensure LLC"
+  },
+  "interface": {
+    "displayName": "PMCR-O GitHub Skills"
+  },
+  "plugins": [
+    {
+      "name": "github",
+      "source": "./plugins/github",
+      "description": "GitHub repository operations for the PMCR-O base and packs using connected GitHub MCP tools."
+    }
+  ]
+}
