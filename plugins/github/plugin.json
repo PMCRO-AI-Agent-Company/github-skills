@@ -1,7 +1,7 @@
 {
   "name": "github",
-  "version": "0.1.1",
-  "description": "GitHub repository operations for the PMCR-O base and packs using connected GitHub MCP tools: create/update repos, push files, branches, PRs, tree inspection, pack overlay publish",
+  "version": "0.2.0",
+  "description": "Governed GitHub repository, pull request, Actions, MCP, security, release, issue, code-search, and Agent Skills operations for PMCR-O.",
   "author": {
     "name": "PMCR-O / Tooensure LLC"
   },
@@ -15,6 +15,6 @@
       "url": "https://api.githubcopilot.com/mcp/"
     }
   },
-  "keywords": ["github", "git", "repo", "publish", "version-control"],
-  "homepage": "https://github.com/PMCRO-AI-Agent-Company/pmcro-github-skills"
+  "keywords": ["github", "git", "repo", "pull-request", "actions", "mcp", "agent-skills", "security", "release"],
+  "homepage": "https://github.com/PMCRO-AI-Agent-Company/github-skills"
 }
