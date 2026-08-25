@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "description": "Governed GitHub repository, pull request, Actions, MCP, security, release, issue, code-search, and Agent Skills operations for PMCR-O.",
   "author": {
-    "name": "PMR-O / Tooensure LLC"
+    "name": "PMCR-O / Tooensure LLC"
   },
   "skills": ["./skills/"],
   "agents": [
