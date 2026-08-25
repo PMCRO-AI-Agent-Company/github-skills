@@ -1,41 +1,60 @@
 ---
 name: github-ops
 description: >-
-  GitHub repository operations for the PMCR-O base and packs using connected
-  GitHub MCP tools. USE FOR create/update repos, push files, branches, PRs,
-  tree inspection, and pack overlay publish. DO NOT USE for non-GitHub remotes
-  or local-only files. TYPE1 for all mutations.
+  Governed GitHub repository and GitHub Actions operations for the PMCR-O base
+  and domain packs using connected GitHub tools. USE FOR repository inspection,
+  branches, commits, files, pull requests, reviews, CI/workflow runs, Actions
+  reruns, skill publication and release evidence. TYPE1 for all mutations.
 ---
 
 # GitHub Ops
 
-Drives the **connected GitHub MCP** (or a future self-hosted `Pmcro.Mcp.GitHub`
-built from the declarative spec). All writes are TYPE1.
+Operate GitHub as a governed actuator, not as an implicit authority. Inspect the remote state first, make the smallest correct mutation, then verify the resulting commit/PR/Action state.
 
-## When to Use
+## Use for
 
-- Publish or update PMCR-O base/skill repos under `PMCRO-AI-Agent-Company` (e.g. `github-skills`, `figma-skills`, `pmcro-skills`, `dotnet-skills`, `agent-skills`)
-- Create org/personal repos for company projects
-- Push bare-engine batches or pack overlay branches
-- Open PRs with trail UUID in the body
-- Inspect remote tree vs local bare zip
-- Scaffold a custom GitHub MCP server from `plugins/pmcro/references/connectors/github-mcp-server.spec.yaml` via `create-mcp-server`
+- Inspecting repository trees, files, branches, commits, issues and PRs.
+- Updating PMCR-O repositories under `PMCRO-AI-Agent-Company`.
+- Creating branches, commits and PRs with traceable intent/trail identifiers.
+- Reviewing diffs and CI status before merge.
+- Inspecting GitHub Actions workflow runs, jobs, logs and artifacts.
+- Re-running failed jobs only when the failure is understood and retry is appropriate.
+- Publishing or updating Agent Skills and plugin manifests.
+- Maintaining the GitHub skill catalog and its MCP tool metadata.
 
-## When Not to Use
+## Mutation protocol
 
-- Local-only commits with no GitHub remote → version-control
-- Source dumps / zips → filesystem-agent
-- Non-GitHub hosts
+1. **Inspect**: repository, branch, current file SHA, and relevant CI state.
+2. **Plan**: identify the exact files and expected invariant changes.
+3. **Mutate**: use the narrowest GitHub operation available.
+4. **Verify**: fetch the resulting commit/file/PR and inspect CI.
+5. **Evidence**: report commit SHA, changed paths, tests/Actions results and remaining gaps.
 
-## MCP tool catalog
+All writes are TYPE 1. Never overwrite a file without its current SHA. Never force-update a branch unless the operation explicitly requires it and the risk is accepted.
 
-| Artifact | Role |
-|----------|------|
-| `assets/github-mcp-tools.json` | Machine shapes (connected tools) |
-| `references/github-mcp-catalog.md` | Human ops notes |
-| `plugins/pmcro/references/connectors/github-mcp-server.spec.yaml` | Declarative server matching this catalog (lives centrally with the other connector specs, same as `figma-mcp-server.spec.yaml`) |
+## Agent Skills
 
-Tool names match a standard host GitHub MCP (`github___*`). No GitHub MCP
-was connected when this catalog was authored, so tool shapes were drafted
-from the well-known GitHub MCP server surface, not pulled live — verify
-against the actual connected host before relying on exact parameter names.
+Follow the open Agent Skills shape: a skill is a directory containing `SKILL.md` plus optional scripts, references and assets. GitHub currently supports project skills in `.github/skills`, `.claude/skills`, and `.agents/skills`; prefer the repository's declared host strategy rather than duplicating the same skill arbitrarily.
+
+Before installing or importing a third-party skill, inspect its `SKILL.md` and file tree. Skills are executable/prompt-bearing supply-chain inputs and may contain prompt injection or malicious scripts.
+
+## GitHub Actions
+
+Treat Actions as part of the repository execution surface. Inspect workflow definitions and the latest run before declaring a repository healthy. Distinguish:
+
+- source-code success,
+- workflow/job success,
+- deployment success, and
+- governance/evaluation success.
+
+A green Action is evidence for the checks it actually executes; it is not proof of unrelated runtime behavior.
+
+## MCP
+
+The connected GitHub tools are the authoritative execution surface for this skill. The checked-in catalog is documentation/metadata, not permission to invent unsupported tool calls. Verify exact tool shapes against the connected host before relying on a catalog entry.
+
+## When not to use
+
+- Local-only filesystem changes without a GitHub remote.
+- Non-GitHub remotes.
+- Secret/credential management outside the repository's approved security workflow.
